@@ -3,11 +3,15 @@ import emails from './data/emails'
 
 import initialEmails from './data/emails'
 
+import { useState } from "react";
+
 import './styles/app.css'
 
 function App() {
   // Use initialEmails for state
   // const [emails, setEmails] = useState(initialEmails);
+  const [tab, setTab] = useState('inbox')
+  const [checked, setChecked] = useState(false)
 
   console.log(initialEmails)
 
@@ -17,15 +21,15 @@ function App() {
       <nav className="left-menu">
         <ul className="inbox-list">
           <li
-            className="item active"
-            // onClick={() => {}}
+            className= {tab === 'inbox' ? 'item active' : 'item'}
+            onClick={() => setTab('inbox')}
           >
             <span className="label">Inbox</span>
-            <span className="count">?</span>
+            <span className="count">{emails.length}</span>
           </li>
           <li
-            className="item"
-            // onClick={() => {}}
+            className={tab === 'starred' ? "item active" : "item"}
+            onClick={() => setTab('starred')}
           >
             <span className="label">Starred</span>
             <span className="count">?</span>
@@ -36,8 +40,8 @@ function App() {
             <input
               id="hide-read"
               type="checkbox"
-              checked={false}
-              // onChange={() => {}}
+              checked={checked}
+              onChange={() => setChecked(!checked)}
             />
           </li>
         </ul>
