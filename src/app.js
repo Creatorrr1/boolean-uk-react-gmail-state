@@ -1,4 +1,5 @@
 import Header from './components/header'
+import emails from './data/emails'
 
 import initialEmails from './data/emails'
 
@@ -6,6 +7,8 @@ import './styles/app.css'
 
 function App() {
   // Use initialEmails for state
+  // const [emails, setEmails] = useState(initialEmails);
+
   console.log(initialEmails)
 
   return (
@@ -39,7 +42,26 @@ function App() {
           </li>
         </ul>
       </nav>
-      <main className="emails">{/* Render a list of emails here */}</main>
+      <main className="emails">{/* Render a list of emails here */}
+      <ul className=''>
+        {emails.map((email, index) => (
+          <li key = {index} className= 'email unread'>
+            {/* checkbox */}
+            <div className='select'>
+            <input type="checkbox" className='select-checkbox'/>
+            </div>
+            {/* star */}
+            <div className='star'>
+              <input type='checkbox'className='star-checkbox'/>
+            </div>
+            {/* recipient */}
+            <div className='sender'>{email.sender}</div>
+            {/* email preview */}
+            <div className='title'>{email.title}</div>
+          </li>
+        ))}
+      </ul>
+      </main>
     </div>
   )
 }
